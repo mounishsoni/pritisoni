@@ -1,0 +1,27 @@
+@import './base.css';
+@import '/node_modules/primeflex/primeflex.css';
+
+body {
+  background-color: #F6F7F9;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+/* TODO: Remove play button and other texts */
+iframe .ytp-large-play-button {
+  display: none !important;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {}
