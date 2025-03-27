@@ -20,8 +20,8 @@
         </template>
         <template #end>
             <div class="flex items-center gap-2">
-                <InputText placeholder="Search" :value="searchFilter" @value-change="setSearchFilter" type="text"
-                    class="md:w-30rem sm:w-auto" />
+                <!-- <InputText placeholder="Search" :value="searchFilter" @value-change="setSearchFilter" type="text"
+                    class="md:w-30rem sm:w-auto" /> -->
                 <!-- <Avatar image="/images/avatar/amyelsner.png" shape="circle" /> -->
             </div>
         </template>
