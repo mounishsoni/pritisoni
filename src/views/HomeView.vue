@@ -140,5 +140,8 @@ export default {
 			});
 		},
 	},
+    mounted() {
+        this.fetchData();
+    },
 };
 </script>

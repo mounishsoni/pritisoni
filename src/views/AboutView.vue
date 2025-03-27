@@ -208,5 +208,8 @@ export default defineComponent({
             });
         },
     },
+    mounted() {
+        this.fetchData();
+    },
 });
 </script>
