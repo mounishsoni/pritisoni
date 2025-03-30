@@ -5,6 +5,10 @@ import TheWelcome from '../components/TheWelcome.vue'
 <template>
 	<main>
 		<!-- <TheWelcome /> -->
+		<!-- <PDFViewer
+			:source="`https://rmecigapcpjpvuoiwocg.supabase.co/storage/v1/object/sign/application/saundarya-lehri.pdf?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhcHBsaWNhdGlvbi9zYXVuZGFyeWEtbGVocmkucGRmIiwiaWF0IjoxNzQzMzA1NjI0LCJleHAiOjE3NDM5MTA0MjR9.sJzHV-SG7Wa9eXMSONEt2fJatlsS8J68JCMTWBmeNfI`"
+			style="height: 50vh; width: 50vw" @download="handleDownload" settings="{defaultZoom: 65}"
+			rendering-text="Please wait" /> -->
 		<div style="margin:auto 20px;">
 			<br />
 			<Toolbar>
@@ -43,8 +47,8 @@ import TheWelcome from '../components/TheWelcome.vue'
 						<template #footer>
 							<div class="flex gap-4 mt-1">
 								<Button label="Learn more" severity="secondary" outlined class="w-full"
-									@click="goToLink()" />
-								<Button label="Episodes" class="w-full" @click="goToNextPage(item.id)" />
+									@click="goToLink(item.url)" v-if="item.url" />
+								<Button label="Explore" class="w-full" @click="goToNextPage(item.id)" />
 							</div>
 						</template>
 					</Card>
@@ -56,23 +60,14 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 <script>
 import { supabase } from "@/config/supabaseClient";
-import { ref, watchEffect } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { filterStore } from "@/stores/filter";
 import { mapActions, mapState } from "pinia";
+// import PDFViewer from 'pdf-viewer-vue'
 
-watchEffect(async () => {
-	const { collectionData, error } = await supabase
-		.from("collection")
-		.select("*");
-
-	if (error) {
-		console.error("Error fetching data:", error);
-	} else {
-		this.data = collectionData;
-	}
-});
 export default {
+	// components: { PDFViewer },
 	data() {
 		return {
 			data: [],
@@ -103,8 +98,8 @@ export default {
 				this.data = data;
 			}
 		},
-		goToLink() {
-			window.open("https://shivyog.com/what-is-shivyog/", "_blank");
+		goToLink(url) {
+			window.open(url, "_blank");
 		},
 		goToNextPage(collectionId) {
 			this.router.push({ path: "/about", query: { q: collectionId } });
