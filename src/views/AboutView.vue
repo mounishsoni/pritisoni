@@ -23,7 +23,7 @@
         <br />
         <div>
             <div class="col" v-for="item in filteredVideoInfo" :key="`${item.id}`">
-                <Card class="card-style shadow-4">
+                <Card class="card-style shadow-2">
                     <template #title>
                         <div class="grid">
                             <div class="col">
