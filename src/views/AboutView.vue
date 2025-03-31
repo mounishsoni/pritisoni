@@ -70,7 +70,7 @@
 
             <div v-if="this.isDocument">
                 <PDFViewer
-                    :source="`https://rmecigapcpjpvuoiwocg.supabase.co/storage/v1/object/sign/application/saundarya-lehri.pdf?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhcHBsaWNhdGlvbi9zYXVuZGFyeWEtbGVocmkucGRmIiwiaWF0IjoxNzQzMzA1NjI0LCJleHAiOjE3NDM5MTA0MjR9.sJzHV-SG7Wa9eXMSONEt2fJatlsS8J68JCMTWBmeNfI`"
+                    :source="`https://rmecigapcpjpvuoiwocg.supabase.co/storage/v1/object/public/application/SL/saundarya-lehri.pdf`"
                     style="height: 75vh; width: 40vw" @download="handleDownload" settings="{defaultZoom: 65}"
                     rendering-text="Please wait" />
             </div>
