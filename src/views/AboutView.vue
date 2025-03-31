@@ -69,10 +69,8 @@
             </div>
 
             <div v-if="this.isDocument">
-                <PDFViewer
-                    :source="`https://rmecigapcpjpvuoiwocg.supabase.co/storage/v1/object/public/application/SL/saundarya-lehri.pdf`"
-                    style="height: 75vh; width: 40vw" @download="handleDownload" settings="{defaultZoom: 65}"
-                    rendering-text="Please wait" />
+                <PDFViewer :source="documentURL" style="height: 75vh; width: 40vw" @download="handleDownload"
+                    settings="{defaultZoom: 65}" rendering-text="Please wait" />
             </div>
         </Dialog>
     </div>
@@ -114,6 +112,7 @@ export default defineComponent({
             isDocument: "",
             videoInfo: [],
             documentInfo: [],
+            documentURL: "",
             // items: [
             //     {
             //         label: "Add",
@@ -181,6 +180,18 @@ export default defineComponent({
                 this.documentFolder = documentFolder;
                 this.documentName = documentName;
                 this.isDocument = isDocument;
+
+                const { data, error } = supabase.storage
+                    .from("application")
+                    .getPublicUrl(
+                        documentFolder + "/" + documentName
+                    );
+
+                if (!error) {
+                    this.documentURL = data.publicUrl
+                } else {
+                    console.error("Error while fetching document URL", error)
+                }
             }
         },
         async fetchData() {
