@@ -9,14 +9,19 @@ import TheWelcome from '../components/TheWelcome.vue'
 			:source="`https://rmecigapcpjpvuoiwocg.supabase.co/storage/v1/object/sign/application/saundarya-lehri.pdf?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhcHBsaWNhdGlvbi9zYXVuZGFyeWEtbGVocmkucGRmIiwiaWF0IjoxNzQzMzA1NjI0LCJleHAiOjE3NDM5MTA0MjR9.sJzHV-SG7Wa9eXMSONEt2fJatlsS8J68JCMTWBmeNfI`"
 			style="height: 50vh; width: 50vw" @download="handleDownload" settings="{defaultZoom: 65}"
 			rendering-text="Please wait" /> -->
-		<div style="margin:auto 20px;">
+		<div style="margin: auto 20px">
 			<br />
 			<Toolbar>
 				<template #start>
 					<h2 class="mx-2">Collections</h2>
 					<!-- <Button icon="pi pi-plus" class="mr-2" severity="secondary" /> -->
-					<Button icon="pi pi-refresh" @click="fetchData" class="mr-2" severity="secondary"
-						v-tooltip.top="'Refresh'" />
+					<Button
+						icon="pi pi-refresh"
+						@click="fetchData"
+						class="mr-2"
+						severity="secondary"
+						v-tooltip.top="'Refresh'"
+					/>
 				</template>
 
 				<template #end>
@@ -24,7 +29,11 @@ import TheWelcome from '../components/TheWelcome.vue'
 						<InputIcon>
 							<i class="pi pi-search" />
 						</InputIcon>
-						<InputText placeholder="Search" :value="collectionSF" @value-change="setCollectionSF" />
+						<InputText
+							placeholder="Search"
+							:value="collectionSF"
+							@value-change="setCollectionSF"
+						/>
 					</IconField>
 				</template>
 
@@ -34,23 +43,41 @@ import TheWelcome from '../components/TheWelcome.vue'
 			</Toolbar>
 			<br />
 			<div class="grid">
-				<div class="col-12 md:col-6 lg:col-4" v-for="item in filteredCollectionData" :key="item.id">
+				<div
+					class="col-12 md:col-6 lg:col-4"
+					v-for="item in filteredCollectionData"
+					:key="item.id"
+				>
 					<Card class="card-style shadow-2">
 						<template #header>
 							<!-- <img alt="user header" src="/images/usercard.png" /> -->
 						</template>
 						<template #title>{{ item.title }}</template>
 						<template #subtitle>
-							<Chip class="text-xs px-2 py-1" :label="`${item.sub_title}`" v-if="item.sub_title" />
+							<Chip
+								class="text-xs px-2 py-1"
+								:label="`${item.sub_title}`"
+								v-if="item.sub_title"
+							/>
 						</template>
 						<template #content>
 							{{ item.description }}
 						</template>
 						<template #footer>
 							<div class="flex gap-4 mt-1">
-								<Button label="Learn more" severity="secondary" outlined class="w-full"
-									@click="goToLink(item.url)" v-if="item.url" />
-								<Button label="Explore" class="w-full" @click="goToNextPage(item.id)" />
+								<Button
+									label="Learn more"
+									severity="secondary"
+									outlined
+									class="w-full"
+									@click="goToLink(item.url)"
+									v-if="item.url"
+								/>
+								<Button
+									label="Explore"
+									class="w-full"
+									@click="goToNextPage(item.id)"
+								/>
 							</div>
 						</template>
 					</Card>
