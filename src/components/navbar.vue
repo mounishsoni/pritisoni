@@ -5,7 +5,7 @@
                 <path d="..." fill="var(--p-primary-color)" />
                 <path d="..." fill="var(--p-text-color)" />
             </svg> -->
-            <h2>PRITI SONI</h2>
+            <h2 class="text-link" @click="goToHomePage()">PRITI SONI</h2>
         </template>
         <template #item="{ item, props, hasSubmenu, root }">
             <a v-ripple class="flex items-center" v-bind="props.action">
@@ -20,6 +20,7 @@
         </template>
         <template #end>
             <div class="flex items-center gap-2">
+                <i class="pi pi-heart text-link" style="font-size: 1.5rem" @click="goToFavoritePage()"></i>
                 <!-- <InputText placeholder="Search" :value="searchFilter" @value-change="setSearchFilter" type="text"
                     class="md:w-30rem sm:w-auto" /> -->
                 <!-- <Avatar image="/images/avatar/amyelsner.png" shape="circle" /> -->
@@ -32,10 +33,12 @@
 import { defineComponent } from 'vue'
 import { filterStore } from '@/stores/filter';
 import { mapActions, mapState } from 'pinia';
+import { useRouter } from "vue-router";
 
 export default defineComponent({
     data() {
         return {
+			router: useRouter(),
             // items: [
             //     {
             //         label: 'Home',
@@ -73,7 +76,13 @@ export default defineComponent({
         ...mapState(filterStore, ['searchFilter'])
     },
     methods: {
-        ...mapActions(filterStore, ['setSearchFilter'])
+        ...mapActions(filterStore, ['setSearchFilter']),
+        goToFavoritePage() {
+			this.router.push({ path: "/favorite" });
+        },
+        goToHomePage() {
+			this.router.push({ path: "/" });
+        }
     }
 })
 </script>
@@ -82,5 +91,11 @@ export default defineComponent({
 .navigation {
     max-width: 100vw !important;
     width: 100vw !important;
+}
+.navigation-content {
+    margin: 0 20px;
+}
+.text-link:hover {
+	cursor: pointer;
 }
 </style>
